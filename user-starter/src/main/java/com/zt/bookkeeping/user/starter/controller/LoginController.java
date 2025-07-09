@@ -1,5 +1,6 @@
 package com.zt.bookkeeping.user.starter.controller;
 
+import com.zt.bookkeeping.user.starter.common.Result;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @PostMapping
-    public Long login(){
-
-
-
+    public Result<Long> login(){
+        // TODO: 实现登录逻辑
+        Long userId = 12345L; // 示例用户ID
+        return Result.success("登录成功", userId);
     }
 }
