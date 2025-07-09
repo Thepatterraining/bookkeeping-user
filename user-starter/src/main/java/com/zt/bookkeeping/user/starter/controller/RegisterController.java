@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
  * Date:2025/7/9
  * Time:17:28
  */
-@RequestMapping("/user/login")
+@RequestMapping("/user/register")
 @RestController
-public class LoginController {
+public class RegisterController {
 
     @PostMapping
     public Result<Long> login(@Valid @RequestBody LoginRequest request){

@@ -1,5 +1,7 @@
 package com.zt.bookkeeping.user.starter.common;
 
+import java.io.Serializable;
+
 /**
  * 通用HTTP返回信息类
  * ------------------------------------
@@ -7,7 +9,7 @@ package com.zt.bookkeeping.user.starter.common;
  * Date:2025/7/9
  * Time:17:30
  */
-public class Result<T> {
+public class Result<T> implements Serializable {
 
     /**
      * 状态码
