@@ -1,5 +1,6 @@
 package com.zt.bookkeeping.user.starter.controller;
 
+import com.zt.bookkeeping.user.domain.req.LoginRequest;
 import com.zt.bookkeeping.user.starter.common.Result;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,21 +26,21 @@ public class LoginController {
         return Result.success("登录成功", userId);
     }
 
-    @PostMapping("/login")
-    public ResponseMessage<LoginRes> login(@Valid @RequestBody LoginRequest request) {
-        log.info("登陆:{}", request);
-        AdminUser user = loginService.login(request.username(), request.password());
-        String token = JwtUtil.generateToken(user.getMobile());
-        LoginRes res = new LoginRes();
-        res.setToken(token);
-        res.setId(user.getId());
-        res.setName(user.getName());
-        res.setMobile(user.getMobile());
-        res.setAvatar(user.getAvatar());
-        res.setUserNo(user.getUserNo());
-        res.setEmail(user.getEmail());
-        res.setCreateTime(user.getCreateTime());
-        res.setUpdateTime(user.getUpdateTime());
-        return ResponseMessage.success(res);
-    }
+//    @PostMapping("/login")
+//    public ResponseMessage<LoginRes> login(@Valid @RequestBody LoginRequest request) {
+//        log.info("登陆:{}", request);
+//        AdminUser user = loginService.login(request.username(), request.password());
+//        String token = JwtUtil.generateToken(user.getMobile());
+//        LoginRes res = new LoginRes();
+//        res.setToken(token);
+//        res.setId(user.getId());
+//        res.setName(user.getName());
+//        res.setMobile(user.getMobile());
+//        res.setAvatar(user.getAvatar());
+//        res.setUserNo(user.getUserNo());
+//        res.setEmail(user.getEmail());
+//        res.setCreateTime(user.getCreateTime());
+//        res.setUpdateTime(user.getUpdateTime());
+//        return ResponseMessage.success(res);
+//    }
 }
