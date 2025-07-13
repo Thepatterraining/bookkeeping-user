@@ -1,6 +1,8 @@
 package com.zt.bookkeeping.user.starter.controller;
 
-import com.zt.bookkeeping.user.domain.req.LoginRequest;
+import com.zt.bookkeeping.user.application.service.UserLoginApplicationService;
+import com.zt.bookkeeping.user.domain.user.req.LoginRequest;
+import com.zt.bookkeeping.user.domain.user.res.LoginRes;
 import com.zt.bookkeeping.user.starter.common.Result;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    private UserLoginApplicationService userLoginApplicationService;
+
     @PostMapping
-    public Result<Long> login(@Valid @RequestBody LoginRequest request){
-        // TODO: 实现登录逻辑
-        Long userId = 12345L; // 示例用户ID
-        return Result.success("登录成功", userId);
+    public Result<LoginRes> login(@Valid @RequestBody LoginRequest request){
+        LoginRes loginRes = userLoginApplicationService.login(request);
+        return Result.success("登录成功", loginRes);
     }
 
 //    @PostMapping("/login")
