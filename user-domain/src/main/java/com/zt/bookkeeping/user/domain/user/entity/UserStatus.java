@@ -39,4 +39,11 @@ public class UserStatus {
         return status.equals(UserStatusEnum.ACTIVE);
     }
 
+    @Override
+    public String toString() {
+        return "UserStatus{" +
+                "status =" + status.getLabel() +
+                '}';
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.zt.bookkeeping.user.domain.util;
+package com.zt.bookkeeping.user.infrastructure.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

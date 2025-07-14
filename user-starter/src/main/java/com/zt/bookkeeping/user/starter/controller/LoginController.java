@@ -3,7 +3,7 @@ package com.zt.bookkeeping.user.starter.controller;
 import com.zt.bookkeeping.user.application.service.UserLoginApplicationService;
 import com.zt.bookkeeping.user.domain.user.req.LoginRequest;
 import com.zt.bookkeeping.user.domain.user.res.LoginRes;
-import com.zt.bookkeeping.user.starter.common.Result;
+import com.zt.bookkeeping.user.infrastructure.common.Result;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

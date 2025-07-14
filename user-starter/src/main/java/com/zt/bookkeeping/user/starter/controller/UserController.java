@@ -1,7 +1,6 @@
 package com.zt.bookkeeping.user.starter.controller;
 
-import com.zt.bookkeeping.user.starter.common.Result;
-import com.zt.bookkeeping.user.starter.common.ResultCode;
+import com.zt.bookkeeping.user.infrastructure.common.Result;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -36,51 +35,51 @@ public class UserController {
         return Result.success("查询成功", userInfo);
     }
 
-    /**
-     * 创建用户 - 使用ResultCode枚举
-     */
-    @PostMapping
-    public Result<Long> createUser(@RequestBody Map<String, String> userInfo) {
-        String username = userInfo.get("username");
-        if (username == null || username.trim().isEmpty()) {
-            return Result.result(ResultCode.VALIDATION_ERROR);
-        }
-
-        // 模拟创建用户
-        Long newUserId = System.currentTimeMillis();
-        return Result.result(ResultCode.SUCCESS, newUserId);
-    }
-
-    /**
-     * 更新用户 - 无返回数据的成功响应
-     */
-    @PutMapping("/{id}")
-    public Result<Void> updateUser(@PathVariable Long id, @RequestBody Map<String, String> userInfo) {
-        if (id <= 0) {
-            return Result.result(ResultCode.BAD_REQUEST);
-        }
-
-        // 模拟更新用户
-        return Result.success("用户信息更新成功", null);
-    }
-
-    /**
-     * 删除用户 - 业务异常处理
-     */
-    @DeleteMapping("/{id}")
-    public Result<Void> deleteUser(@PathVariable Long id) {
-        if (id <= 0) {
-            return Result.result(ResultCode.BAD_REQUEST);
-        }
-
-        // 模拟业务逻辑：管理员用户不能删除
-        if (id == 1L) {
-            return Result.result(ResultCode.PERMISSION_DENIED);
-        }
-
-        // 模拟删除用户
-        return Result.success();
-    }
+//    /**
+//     * 创建用户 - 使用ResultCode枚举
+//     */
+//    @PostMapping
+//    public Result<Long> createUser(@RequestBody Map<String, String> userInfo) {
+//        String username = userInfo.get("username");
+//        if (username == null || username.trim().isEmpty()) {
+//            return Result.result(ResultCode.VALIDATION_ERROR);
+//        }
+//
+//        // 模拟创建用户
+//        Long newUserId = System.currentTimeMillis();
+//        return Result.result(ResultCode.SUCCESS, newUserId);
+//    }
+//
+//    /**
+//     * 更新用户 - 无返回数据的成功响应
+//     */
+//    @PutMapping("/{id}")
+//    public Result<Void> updateUser(@PathVariable Long id, @RequestBody Map<String, String> userInfo) {
+//        if (id <= 0) {
+//            return Result.result(ResultCode.BAD_REQUEST);
+//        }
+//
+//        // 模拟更新用户
+//        return Result.success("用户信息更新成功", null);
+//    }
+//
+//    /**
+//     * 删除用户 - 业务异常处理
+//     */
+//    @DeleteMapping("/{id}")
+//    public Result<Void> deleteUser(@PathVariable Long id) {
+//        if (id <= 0) {
+//            return Result.result(ResultCode.BAD_REQUEST);
+//        }
+//
+//        // 模拟业务逻辑：管理员用户不能删除
+//        if (id == 1L) {
+//            return Result.result(ResultCode.PERMISSION_DENIED);
+//        }
+//
+//        // 模拟删除用户
+//        return Result.success();
+//    }
 
     /**
      * 获取用户列表 - 自定义状态码和消息

@@ -14,6 +14,13 @@
 	<description>用户服务领域层</description>
 
 	<dependencies>
+		<!-- 依赖common -->
+		<dependency>
+			<groupId>com.zt.bookkeeping.user</groupId>
+			<artifactId>user-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
 		<!-- 领域层只需要基础的Java依赖，不需要Spring Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -23,25 +30,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<!-- 引入jwt-->
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>0.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.2</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.2</version>
-			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

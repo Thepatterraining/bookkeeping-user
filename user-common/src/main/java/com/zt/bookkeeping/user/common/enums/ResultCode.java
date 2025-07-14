@@ -1,4 +1,4 @@
-package com.zt.bookkeeping.user.starter.common;
+package com.zt.bookkeeping.user.common.enums;
 
 /**
  * 响应状态码枚举
@@ -31,7 +31,12 @@ public enum ResultCode {
     PERMISSION_DENIED(1003, "权限不足"),
     DATA_NOT_FOUND(1004, "数据不存在"),
     DATA_ALREADY_EXISTS(1005, "数据已存在"),
-    OPERATION_FAILED(1006, "操作失败");
+    OPERATION_FAILED(1006, "操作失败"),
+
+    USER_NOT_FOUND(1007, "用户不存在"),
+    USER_PASSWORD_ERROR(1008, "密码错误"),
+    USER_STATUS_ERROR(1009, "用户状态异常")
+    ;
 
     private final Integer code;
     private final String message;

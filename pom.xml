@@ -38,6 +38,7 @@
 		<module>user-application</module>
 		<module>user-infrastructure</module>
 		<module>user-starter</module>
+		<module>user-common</module>
 	</modules>
 
 	<dependencyManagement>

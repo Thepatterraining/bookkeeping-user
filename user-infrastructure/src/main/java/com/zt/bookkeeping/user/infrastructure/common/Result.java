@@ -1,4 +1,7 @@
-package com.zt.bookkeeping.user.starter.common;
+package com.zt.bookkeeping.user.infrastructure.common;
+
+
+import com.zt.bookkeeping.user.common.enums.ResultCode;
 
 import java.io.Serializable;
 

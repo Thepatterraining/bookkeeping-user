@@ -6,7 +6,7 @@ import com.zt.bookkeeping.user.domain.user.entity.UserStatus;
 import com.zt.bookkeeping.user.domain.user.entity.UserType;
 import com.zt.bookkeeping.user.domain.user.respository.UserRepository;
 import com.zt.bookkeeping.user.infrastructure.db.UserMapper;
-import com.zt.bookkeeping.user.infrastructure.db.entity.UserDO;
+import com.zt.bookkeeping.user.infrastructure.db.entity.UserPO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
@@ -19,18 +19,18 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserAgg getUser(String username) {
         // 1. 查询用户信息
-        LambdaQueryWrapper<UserDO> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserDO::getUsername, username);
-        UserDO userDo = userMapper.selectOne(queryWrapper);
-        if (userDo == null) {
+        LambdaQueryWrapper<UserPO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserPO::getUsername, username);
+        UserPO userPO = userMapper.selectOne(queryWrapper);
+        if (userPO == null) {
             return null;
         }
 
         // 2. 转化成聚合返回
-        return this.toEntity(userDo);
+        return this.toEntity(userPO);
     }
 
-    private UserAgg toEntity(UserDO doObj) {
+    private UserAgg toEntity(UserPO doObj) {
         return new UserAgg(
                 doObj.getId(),
                 doObj.getUsername(),
