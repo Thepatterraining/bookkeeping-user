@@ -30,6 +30,40 @@ public class UserRepositoryImpl implements UserRepository {
         return this.toEntity(userPO);
     }
 
+    @Override
+    public UserAgg getUserByMobile(String mobile) {
+        // 1. 查询用户信息
+        LambdaQueryWrapper<UserPO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserPO::getMobile, mobile);
+        UserPO userPO = userMapper.selectOne(queryWrapper);
+        if (userPO == null) {
+            return null;
+        }
+
+        // 2. 转化成聚合返回
+        return this.toEntity(userPO);
+    }
+
+    @Override
+    public void insert(UserAgg userAgg) {
+        UserPO userPO = this.toPO(userAgg);
+        userMapper.insert(userPO);
+    }
+
+    private UserPO toPO(UserAgg userAgg) {
+        return UserPO.builder()
+                .userNo(userAgg.getUserNo())
+                .username(userAgg.getUsername())
+                .password(userAgg.getPassword())
+                .email(userAgg.getEmail())
+                .mobile(userAgg.getMobile())
+                .gender(userAgg.getGender())
+                .age(userAgg.getAge())
+                .userStatus(userAgg.getUserStatus().getCode())
+                .userType(userAgg.getUserType().getCode())
+                .build();
+    }
+
     private UserAgg toEntity(UserPO doObj) {
         return new UserAgg(
                 doObj.getId(),

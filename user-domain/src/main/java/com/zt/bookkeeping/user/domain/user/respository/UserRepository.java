@@ -6,4 +6,7 @@ public interface UserRepository {
 
     UserAgg getUser(String username);
 
+    UserAgg getUserByMobile(String mobile);
+
+    void insert(UserAgg userAgg);
 }

@@ -1,6 +1,7 @@
 package com.zt.bookkeeping.user.infrastructure.db.entity;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class UserPO {
     private Long id;
     private String userNo;

@@ -1,6 +1,7 @@
 package com.zt.bookkeeping.user.domain.user.entity;
 
 import com.zt.bookkeeping.user.domain.util.EncryptUtil;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  * Time:20:27
  */
 @Data
+@Builder
 public class UserAgg {
     private Long id;
     private String userNo;
@@ -42,6 +44,20 @@ public class UserAgg {
         this.userType = userType;
         this.createTime = LocalDateTime.now();
         this.updateTime = LocalDateTime.now();
+    }
+
+    public static UserAgg init(String mobile) {
+        return UserAgg.builder()
+                .userNo("")
+                .username(mobile)
+                .password("")
+                .email("")
+                .gender(0)
+                .age(0)
+                .mobile(mobile)
+                .userStatus(UserStatus.ACTIVE)
+                .userType(UserType.NORMAL)
+                .build();
     }
 
     // 领域行为方法
