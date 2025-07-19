@@ -33,10 +33,10 @@ public class UserMobileLoginApplicationService {
         checkVerifyCode(loginRequest.getMobile(), loginRequest.getCode());
 
         // 1. 查询用户
-        UserAgg userAgg = userAggService.getUserByUserName(loginRequest.getUsername());
+        UserAgg userAgg = userAggService.getUserByMobile(loginRequest.getMobile());
 
         // 2. 调用用户领域服务校验密码和状态是否能登录
-        userAggService.canLogin(userAgg, userAgg.getPassword());
+        userAggService.canLogin(userAgg);
 
         // 3. 发送登录成功领域事件
         eventPublisher.publishEvent(new UserLoggedInEvent(userAgg.getId(), userAgg.getUsername(), null, LocalDateTime.now()));

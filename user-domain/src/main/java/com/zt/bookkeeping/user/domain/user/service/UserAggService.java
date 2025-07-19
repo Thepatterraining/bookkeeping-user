@@ -20,17 +20,13 @@ public class UserAggService {
         return userRepository.getUser(userName);
     }
 
-    public void canLogin(UserAgg userAgg, String inputPassword) throws UserLoginException {
+    public UserAgg getUserByMobile(String mobile) {return userRepository.getUserByMobile(mobile);}
+
+    public void canLogin(UserAgg userAgg) throws UserLoginException {
         // 0. 校验用户存在
         if (userAgg == null) {
             log.warn("用户不存在");
             throw new UserLoginException(ResultCode.USER_NOT_FOUND);
-        }
-
-        // 1. 校验用户密码
-        if (!userAgg.validatePassword(inputPassword)) {
-            log.warn("用户密码错误,用户输入的密码:{}, 用户的密码:{}",  inputPassword, userAgg.getPassword());
-            throw new UserLoginException(ResultCode.USER_PASSWORD_ERROR);
         }
 
         // 2. 校验用户状态

@@ -29,26 +29,9 @@ public class UserAgg {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 
-    // 构造函数
-    public UserAgg() {}
-
-    public UserAgg(Long id, String username, String password, String email, String mobile, Integer gender, Integer age, UserStatus userStatus, UserType userType) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.mobile = mobile;
-        this.gender = gender;
-        this.age = age;
-        this.userStatus = userStatus;
-        this.userType = userType;
-        this.createTime = LocalDateTime.now();
-        this.updateTime = LocalDateTime.now();
-    }
-
-    public static UserAgg init(String mobile) {
+    public static UserAgg init(String mobile, String userNo) {
         return UserAgg.builder()
-                .userNo("")
+                .userNo(userNo)
                 .username(mobile)
                 .password("")
                 .email("")

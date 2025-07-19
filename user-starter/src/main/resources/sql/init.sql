@@ -9,6 +9,9 @@ create table user
     email       varchar(255) default ''                not null comment '邮箱',
     avatar      varchar(255) default ''                not null comment '头像',
     gender      tinyint      default 0                 not null comment ' 性别 0 未知 1 男 2 女',
+    age         tinyint      default 0                 not null comment '年龄',
+    user_status tinyint      default 0                 not null comment '用户状态',
+    user_type   tinyint      default 0                 not null comment '用户类型',
     create_time datetime     default CURRENT_TIMESTAMP null,
     update_time datetime     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP
 );

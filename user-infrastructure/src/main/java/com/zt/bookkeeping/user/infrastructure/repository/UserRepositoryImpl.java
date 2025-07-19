@@ -48,6 +48,8 @@ public class UserRepositoryImpl implements UserRepository {
     public void insert(UserAgg userAgg) {
         UserPO userPO = this.toPO(userAgg);
         userMapper.insert(userPO);
+        // 回填id
+        userAgg.setId(userPO.getId());
     }
 
     private UserPO toPO(UserAgg userAgg) {
@@ -65,16 +67,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private UserAgg toEntity(UserPO doObj) {
-        return new UserAgg(
-                doObj.getId(),
-                doObj.getUsername(),
-                doObj.getPassword(),
-                doObj.getEmail(),
-                doObj.getMobile(),
-                doObj.getGender(),
-                doObj.getAge(),
-                UserStatus.of(doObj.getUserStatus()),
-                UserType.of(doObj.getUserType())
-        );
+        return UserAgg.builder()
+                .id(doObj.getId())
+                .userNo(doObj.getUserNo())
+                .username(doObj.getUsername())
+                .password(doObj.getPassword())
+                .email(doObj.getEmail())
+                .mobile(doObj.getMobile())
+                .gender(doObj.getGender())
+                .age(doObj.getAge())
+                .userStatus(UserStatus.of(doObj.getUserStatus()))
+                .userType(UserType.of(doObj.getUserType()))
+                .createTime(doObj.getCreateTime())
+                .updateTime(doObj.getUpdateTime())
+                .build();
     }
 }

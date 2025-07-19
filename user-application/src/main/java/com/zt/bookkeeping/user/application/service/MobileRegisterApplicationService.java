@@ -1,5 +1,6 @@
 package com.zt.bookkeeping.user.application.service;
 
+import com.zt.bookkeeping.user.domain.generator.SnowFlakeGenerator;
 import com.zt.bookkeeping.user.domain.user.entity.UserAgg;
 import com.zt.bookkeeping.user.domain.user.event.UserLoggedInEvent;
 import com.zt.bookkeeping.user.domain.user.event.UserRegisteredEvent;
@@ -29,6 +30,9 @@ public class MobileRegisterApplicationService {
     @Resource
     private ApplicationEventPublisher eventPublisher;
 
+    @Resource
+    private SnowFlakeGenerator snowFlakeGenerator;
+
     public Long register(MobileRegisterRequest command) {
         // 校验验证码是否正确
         checkVerifyCode(command.getMobile(), command.getCode());
@@ -37,7 +41,7 @@ public class MobileRegisterApplicationService {
         userAggService.canRegister(command.getMobile());
 
         // 验证码正确 用户可以注册 生成用户聚合
-        UserAgg userAgg = UserAgg.init(command.getMobile());
+        UserAgg userAgg = UserAgg.init(command.getMobile(), snowFlakeGenerator.nextId("user"));
 
         // 3. 调用用户领域服务 注册用户
         userAggService.save(userAgg);

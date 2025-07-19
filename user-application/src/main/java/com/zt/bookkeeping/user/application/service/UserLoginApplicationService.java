@@ -1,5 +1,7 @@
 package com.zt.bookkeeping.user.application.service;
 
+import com.zt.bookkeeping.user.common.enums.ResultCode;
+import com.zt.bookkeeping.user.domain.exception.UserLoginException;
 import com.zt.bookkeeping.user.domain.jwt.JwtTokenService;
 import com.zt.bookkeeping.user.domain.user.entity.UserAgg;
 import com.zt.bookkeeping.user.domain.user.event.UserLoggedInEvent;
@@ -33,7 +35,12 @@ public class UserLoginApplicationService {
         UserAgg userAgg = userAggService.getUserByUserName(loginRequest.getUsername());
 
         // 2. 调用用户领域服务校验密码和状态是否能登录
-        userAggService.canLogin(userAgg, loginRequest.getPassword());
+        // 1. 校验用户密码
+        if (!userAgg.validatePassword(loginRequest.getPassword())) {
+            log.warn("用户密码错误,用户输入的密码:{}, 用户的密码:{}",  loginRequest.getPassword(), userAgg.getPassword());
+            throw new UserLoginException(ResultCode.USER_PASSWORD_ERROR);
+        }
+        userAggService.canLogin(userAgg);
 
         // 3. 发送登录成功领域事件
         eventPublisher.publishEvent(new UserLoggedInEvent(userAgg.getId(), userAgg.getUsername(), null, LocalDateTime.now()));
