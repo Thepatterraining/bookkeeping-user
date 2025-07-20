@@ -15,3 +15,28 @@ create table user
     create_time datetime     default CURRENT_TIMESTAMP null,
     update_time datetime     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP
 );
+
+create table ledger
+(
+    id          int auto_increment comment 'id'
+        primary key,
+    ledger_no     char(20)     default ''                not null comment '账本编号',
+    ledger_name    varchar(50)  default ''                not null comment '账本名称',
+    owner_no    char(20) default ''                not null comment '所属人编号',
+    ledger_status tinyint      default 0                 not null comment '账本状态',
+    create_time datetime     default CURRENT_TIMESTAMP null,
+    update_time datetime     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP
+);
+
+create table ledger_budget
+(
+    id          int auto_increment comment 'id'
+        primary key,
+    ledger_no     char(20)     default ''                not null comment '账本编号',
+    budget_amount    int(11)  default 0                not null comment '预算金额',
+    used_amount     int(11)   default 0                not null comment '已使用金额',
+    remained_amount int(11)   default 0                not null comment '剩余金额',
+    budget_date    date                                          comment '预算日期',
+    create_time datetime     default CURRENT_TIMESTAMP null,
+    update_time datetime     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP
+);
