@@ -44,6 +44,18 @@ spring:
       max-request-size: 50MB
       location: /Users/zt/learn/upload
 
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        heart-beat-interval: 5000
+        heart-beat-timeout: 15000
+        ip: ${spring.cloud.client.ip-address:}
+        port: ${server.port:8080}
+        metadata:
+          version: ${project.version:0.0.1-SNAPSHOT}
+
 #线程池配置参数
 task:
   pool:
@@ -60,3 +72,9 @@ mybatis-plus:
 # 雪花算法
 snowflake:
   machine-id: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,nacos-discovery,nacos-config

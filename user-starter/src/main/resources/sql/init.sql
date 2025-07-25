@@ -23,6 +23,8 @@ create table ledger
     ledger_no     char(20)     default ''                not null comment '账本编号',
     ledger_name    varchar(50)  default ''                not null comment '账本名称',
     owner_no    char(20) default ''                not null comment '所属人编号',
+    ledger_image    varchar(255) default ''                not null comment '账本封面',
+    ledger_desc    varchar(255) default ''                not null comment '账本描述',
     ledger_status tinyint      default 0                 not null comment '账本状态',
     create_time datetime     default CURRENT_TIMESTAMP null,
     update_time datetime     default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP

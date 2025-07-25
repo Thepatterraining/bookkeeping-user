@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: user-service  # 改为更合适的服务名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+      config:
+        server-addr: localhost:8848
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yml
+
