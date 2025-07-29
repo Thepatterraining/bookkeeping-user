@@ -5,11 +5,13 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-        namespace: ${NACOS_NAMESPACE:}
+        namespace: ${spring.profiles.active:}
         group: ${NACOS_GROUP:DEFAULT_GROUP}
       config:
         server-addr: localhost:8848
-        namespace: ${NACOS_NAMESPACE:}
+        namespace: ${spring.profiles.active:}
         group: ${NACOS_GROUP:DEFAULT_GROUP}
         file-extension: yml
-
+      # 添加日志配置
+      logging:
+        default-config-enabled: false  # 禁用Nacos默认日志配置

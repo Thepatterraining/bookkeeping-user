@@ -1,5 +1,8 @@
 package com.zt.bookkeeping.user.domain.user.entity;
 
+import com.zt.bookkeeping.user.common.base.AbstractAgg;
+import com.zt.bookkeeping.user.domain.user.event.UserLoggedInEvent;
+import com.zt.bookkeeping.user.domain.user.event.UserRegisteredEvent;
 import com.zt.bookkeeping.user.domain.util.EncryptUtil;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +18,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-public class UserAgg {
+public class UserAgg extends AbstractAgg {
     private Long id;
     private String userNo;
     private String username;
@@ -38,9 +41,17 @@ public class UserAgg {
                 .gender(0)
                 .age(0)
                 .mobile(mobile)
-                .userStatus(UserStatus.ACTIVE)
-                .userType(UserType.NORMAL)
                 .build();
+    }
+
+    public void register() {
+        userStatus = UserStatus.ACTIVE;
+        userType = UserType.NORMAL;
+        createTime = LocalDateTime.now();
+        updateTime = LocalDateTime.now();
+
+        // 注册领域事件
+        registerDomainEvent(new UserRegisteredEvent(this));
     }
 
     // 领域行为方法
@@ -66,6 +77,11 @@ public class UserAgg {
 
     public boolean validateStatus() {
         return userStatus.canLogin();
+    }
+
+    public void login() {
+        // 产生已登陆领域事件
+        registerDomainEvent(new UserLoggedInEvent(this));
     }
 
 }

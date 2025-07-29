@@ -1,10 +1,11 @@
 package com.zt.bookkeeping.user.application.service;
 
+import com.zt.bookkeeping.user.common.base.DomainEvent;
 import com.zt.bookkeeping.user.domain.jwt.JwtTokenService;
 import com.zt.bookkeeping.user.domain.user.entity.UserAgg;
 import com.zt.bookkeeping.user.domain.user.event.UserLoggedInEvent;
-import com.zt.bookkeeping.user.domain.user.req.LoginRequest;
-import com.zt.bookkeeping.user.domain.user.res.LoginRes;
+import com.zt.bookkeeping.user.application.dto.LoginRequest;
+import com.zt.bookkeeping.user.application.dto.LoginRes;
 import com.zt.bookkeeping.user.domain.user.service.UserAggService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -38,8 +40,12 @@ public class UserMobileLoginApplicationService {
         // 2. 调用用户领域服务校验密码和状态是否能登录
         userAggService.canLogin(userAgg);
 
+        // 登陆
+        userAgg.login();
+
         // 3. 发送登录成功领域事件
-        eventPublisher.publishEvent(new UserLoggedInEvent(userAgg.getId(), userAgg.getUsername(), null, LocalDateTime.now()));
+        List<DomainEvent> events = userAgg.getDomainEvents();
+        eventPublisher.publishEvent(events);
 
         // 4. 生成token
         String token = jwtTokenService.generateToken(userAgg.getUsername());

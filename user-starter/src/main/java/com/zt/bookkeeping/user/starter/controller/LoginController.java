@@ -2,8 +2,8 @@ package com.zt.bookkeeping.user.starter.controller;
 
 import com.zt.bookkeeping.user.application.service.UserLoginApplicationService;
 import com.zt.bookkeeping.user.application.service.UserMobileLoginApplicationService;
-import com.zt.bookkeeping.user.domain.user.req.LoginRequest;
-import com.zt.bookkeeping.user.domain.user.res.LoginRes;
+import com.zt.bookkeeping.user.application.dto.LoginRequest;
+import com.zt.bookkeeping.user.application.dto.LoginRes;
 import com.zt.bookkeeping.user.infrastructure.common.Result;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;

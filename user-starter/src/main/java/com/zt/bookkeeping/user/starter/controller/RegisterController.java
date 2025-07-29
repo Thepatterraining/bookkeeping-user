@@ -1,9 +1,7 @@
 package com.zt.bookkeeping.user.starter.controller;
 
 import com.zt.bookkeeping.user.application.service.MobileRegisterApplicationService;
-import com.zt.bookkeeping.user.domain.user.req.LoginRequest;
-import com.zt.bookkeeping.user.domain.user.req.MobileRegisterRequest;
-import com.zt.bookkeeping.user.domain.user.res.LoginRes;
+import com.zt.bookkeeping.user.application.dto.MobileRegisterRequest;
 import com.zt.bookkeeping.user.infrastructure.common.Result;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -27,8 +25,8 @@ public class RegisterController {
     private MobileRegisterApplicationService mobileRegisterApplicationService;
 
     @PostMapping("/mobile")
-    public Result<Long> mobileRegister(@Valid @RequestBody MobileRegisterRequest request){
-        Long registerRes = mobileRegisterApplicationService.register(request);
+    public Result<String> mobileRegister(@Valid @RequestBody MobileRegisterRequest request){
+        String registerRes = mobileRegisterApplicationService.register(request);
         return Result.success("注册成功", registerRes);
     }
 }

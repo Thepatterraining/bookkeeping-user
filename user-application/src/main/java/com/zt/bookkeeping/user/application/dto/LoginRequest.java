@@ -1,4 +1,4 @@
-package com.zt.bookkeeping.user.domain.user.req;
+package com.zt.bookkeeping.user.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;

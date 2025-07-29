@@ -1,27 +1,14 @@
 package com.zt.bookkeeping.user.domain.user.event;
 
+import com.zt.bookkeeping.user.common.base.AbstractEvent;
+import com.zt.bookkeeping.user.domain.user.entity.UserAgg;
+
 import java.time.LocalDateTime;
 
-public class UserLoggedInEvent {
-    private final Long userId;
-    private final String username;
-    private final String ip;
-    private final LocalDateTime loginTime;
+public class UserLoggedInEvent extends AbstractEvent<UserAgg> {
 
-    public UserLoggedInEvent(Long userId, String username, String ip, LocalDateTime loginTime) {
-        this.userId = userId;
-        this.username = username;
-        this.ip = ip;
-        this.loginTime = loginTime;
+    public UserLoggedInEvent(UserAgg userAgg) {
+        super(userAgg, "user_logged_in");
     }
 
-    public Long getUserId() { return userId; }
-    public String getUsername() { return username; }
-    public String getIp() { return ip; }
-    public LocalDateTime getLoginTime() { return loginTime; }
-
-    @Override
-    public String toString() {
-        return "{ userId: " + userId + ", username: " + username + ", ip: " + ip + ", loginTime: " + loginTime + "}";
-    }
 }

@@ -12,7 +12,7 @@ spring:
     ## 优雅停机宽限期时间
     timeout-per-shutdown-phase: 10s
   # 当前服务名
-  application.name: shopping
+  application.name: bookkeeping-user
   datasource:
     url: jdbc:mysql://localhost:3306/bookkeeping?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
