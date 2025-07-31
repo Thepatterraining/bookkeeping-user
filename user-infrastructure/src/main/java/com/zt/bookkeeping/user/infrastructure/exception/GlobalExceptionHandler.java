@@ -5,6 +5,7 @@ import com.zt.bookkeeping.user.domain.exception.DomainException;
 import com.zt.bookkeeping.user.infrastructure.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -28,6 +29,25 @@ public class GlobalExceptionHandler {
     public Result<Void> handleDomainException(DomainException e) {
         log.warn("领域异常: {}", e.getMessage());
         return Result.error(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * 处理参数校验异常 - Bean Validation
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.warn("参数校验异常: {}", e.getMessage());
+
+        // 获取第一个校验错误信息
+        String errorMessage = e.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .findFirst()
+                .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
+                .orElse("参数校验失败");
+
+        return Result.error(ResultCode.BAD_REQUEST.getCode(), errorMessage);
     }
 
     /**

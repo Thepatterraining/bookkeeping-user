@@ -50,7 +50,11 @@ public class MobileRegisterApplicationService {
 
         // 4. 获取领域事件
         List<DomainEvent> events = userAgg.getDomainEvents();
-        eventPublisher.publishEvent(events);
+        events.forEach(event -> {
+            eventPublisher.publishEvent(event);
+        });
+        // 5. 清楚领域事件
+        userAgg.clearDomainEvents();
         return userAgg.getUserNo();
     }
 

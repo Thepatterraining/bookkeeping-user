@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-@Async
 public class LoginLogListener {
 
+    @Async
     @EventListener
     public void handle(UserLoggedInEvent event) {
         log.info("写入登录日志。用户登录事件：{} ", event.toString());

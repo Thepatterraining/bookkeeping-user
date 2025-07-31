@@ -19,4 +19,5 @@ public class LoginRequest implements Serializable {
     private String password;
     private String mobile;
     private String code;
+    private Integer loginType;
 }

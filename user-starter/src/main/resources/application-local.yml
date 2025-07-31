@@ -14,9 +14,9 @@ spring:
   # 当前服务名
   application.name: bookkeeping-user
   datasource:
-    url: jdbc:mysql://localhost:3306/bookkeeping?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/bookkeeping?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&requireSSL=true
     username: root
-    password: 123456
+    password: zt123456789+
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       #自动提交
@@ -63,11 +63,18 @@ task:
     maxPoolSize: 20  #设置最大线程数
     keepAliveSeconds: 300 #设置线程活跃时间（秒）
     queueCapacity: 50 #设置队列容量
-    threadNamePrefix: # 线程名
+    threadNamePrefix: AsyncExecutor- # 线程名
+
+logging:
+  level:
+    com.zt.bookkeeping.user.infrastructure.db: DEBUG
+    org.springframework.jdbc: DEBUG
 
 mybatis-plus:
-  mapper-locations: classpath*:com/zt/bookkeeping/user/**/db/xml/*
+  mapper-locations: classpath*:com/zt/bookkeeping/user/infrastructure/db/xml/*
   type-aliases-package: com.zt.bookkeeping.user
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 雪花算法
 snowflake:

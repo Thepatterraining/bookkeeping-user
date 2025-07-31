@@ -1,9 +1,10 @@
 package com.zt.bookkeeping.user.common.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractAgg {
-    private List<DomainEvent> domainEvents;
+    private final List<DomainEvent> domainEvents = new ArrayList<>();
 
     /**
      * 注册领域事件

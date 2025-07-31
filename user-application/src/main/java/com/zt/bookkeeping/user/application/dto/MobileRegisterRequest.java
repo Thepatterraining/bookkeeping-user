@@ -1,5 +1,6 @@
 package com.zt.bookkeeping.user.application.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class MobileRegisterRequest implements Serializable {
+
+    @NotBlank
     private String code;
+
+    @NotBlank
     private String mobile;
 }

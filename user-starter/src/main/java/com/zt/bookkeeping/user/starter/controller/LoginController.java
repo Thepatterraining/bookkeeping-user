@@ -1,9 +1,9 @@
 package com.zt.bookkeeping.user.starter.controller;
 
-import com.zt.bookkeeping.user.application.service.UserLoginApplicationService;
-import com.zt.bookkeeping.user.application.service.UserMobileLoginApplicationService;
+import com.zt.bookkeeping.user.application.service.LoginApplicationService;
 import com.zt.bookkeeping.user.application.dto.LoginRequest;
 import com.zt.bookkeeping.user.application.dto.LoginRes;
+import com.zt.bookkeeping.user.domain.user.enums.LoginTypeEnum;
 import com.zt.bookkeeping.user.infrastructure.common.Result;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -24,20 +24,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Resource
-    private UserLoginApplicationService userLoginApplicationService;
-
-    @Resource
-    private UserMobileLoginApplicationService userMobileLoginApplicationService;
+    private LoginApplicationService loginApplicationService;
 
     @PostMapping("/password")
     public Result<LoginRes> pwdLogin(@Valid @RequestBody LoginRequest request){
-        LoginRes loginRes = userLoginApplicationService.login(request);
+        request.setLoginType(LoginTypeEnum.PASSWORD.getCode());
+        LoginRes loginRes = loginApplicationService.login(request);
         return Result.success("登录成功", loginRes);
     }
 
     @PostMapping("/mobile")
     public Result<LoginRes> mobileLogin(@Valid @RequestBody LoginRequest request){
-        LoginRes loginRes = userMobileLoginApplicationService.login(request);
+        request.setLoginType(LoginTypeEnum.MOBILE.getCode());
+        LoginRes loginRes = loginApplicationService.login(request);
         return Result.success("登录成功", loginRes);
     }
 
