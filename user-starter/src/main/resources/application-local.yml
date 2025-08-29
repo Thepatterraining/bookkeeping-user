@@ -85,3 +85,8 @@ management:
     web:
       exposure:
         include: health,info,nacos-discovery,nacos-config
+
+# 微信配置
+wechat:
+  appid: wx61888babefa06666
+  secret: d8d94ef03e8ff776df5e8ce46f177a28

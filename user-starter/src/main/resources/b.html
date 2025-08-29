@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录业务架构图</title>
+</head>
+<body>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="1200" height="800" fill="white"/>
+
+    <!-- 标题 -->
+    <text x="600" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a237e">登录业务架构图</text>
+
+    <!-- 用户接入层 -->
+    <g transform="translate(50, 60)">
+        <rect x="0" y="0" width="1100" height="120" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" rx="10"/>
+        <text x="550" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e20">用户接入层</text>
+
+        <rect x="50" y="40" width="200" height="60" fill="#c8e6c9" stroke="#43a047" rx="8"/>
+        <text x="150" y="65" text-anchor="middle" font-size="14" fill="#1b5e20">Web用户</text>
+        <text x="150" y="85" text-anchor="middle" font-size="12" fill="#2e7d32">浏览器访问</text>
+
+        <rect x="300" y="40" width="200" height="60" fill="#c8e6c9" stroke="#43a047" rx="8"/>
+        <text x="400" y="65" text-anchor="middle" font-size="14" fill="#1b5e20">移动端用户</text>
+        <text x="400" y="85" text-anchor="middle" font-size="12" fill="#2e7d32">APP/H5</text>
+
+        <rect x="550" y="40" width="200" height="60" fill="#c8e6c9" stroke="#43a047" rx="8"/>
+        <text x="650" y="65" text-anchor="middle" font-size="14" fill="#1b5e20">小程序用户</text>
+        <text x="650" y="85" text-anchor="middle" font-size="12" fill="#2e7d32">微信/支付宝</text>
+
+        <rect x="800" y="40" width="200" height="60" fill="#c8e6c9" stroke="#43a047" rx="8"/>
+        <text x="900" y="65" text-anchor="middle" font-size="14" fill="#1b5e20">第三方系统</text>
+        <text x="900" y="85" text-anchor="middle" font-size="12" fill="#2e7d32">开放平台</text>
+    </g>
+
+    <!-- 认证方式层 -->
+    <g transform="translate(50, 200)">
+        <rect x="0" y="0" width="1100" height="200" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="10"/>
+        <text x="550" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#0d47a1">认证方式层</text>
+
+        <!-- 账号密码登录 -->
+        <rect x="30" y="50" width="250" height="130" fill="#bbdefb" stroke="#1565c0" rx="8"/>
+        <text x="155" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">账号密码登录</text>
+        <text x="155" y="100" text-anchor="middle" font-size="13" fill="#1565c0">• 用户名/邮箱</text>
+        <text x="155" y="120" text-anchor="middle" font-size="13" fill="#1565c0">• 密码加密验证</text>
+        <text x="155" y="140" text-anchor="middle" font-size="13" fill="#1565c0">• 防暴力破解</text>
+        <text x="155" y="160" text-anchor="middle" font-size="13" fill="#1565c0">• 登录失败锁定</text>
+
+        <!-- 手机验证码登录 -->
+        <rect x="310" y="50" width="250" height="130" fill="#bbdefb" stroke="#1565c0" rx="8"/>
+        <text x="435" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">手机验证码登录</text>
+        <text x="435" y="100" text-anchor="middle" font-size="13" fill="#1565c0">• 手机号验证</text>
+        <text x="435" y="120" text-anchor="middle" font-size="13" fill="#1565c0">• 短信验证码</text>
+        <text x="435" y="140" text-anchor="middle" font-size="13" fill="#1565c0">• 验证码有效期</text>
+        <text x="435" y="160" text-anchor="middle" font-size="13" fill="#1565c0">• 发送频率限制</text>
+
+        <!-- 微信登录 -->
+        <rect x="590" y="50" width="250" height="130" fill="#bbdefb" stroke="#1565c0" rx="8"/>
+        <text x="715" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">微信登录</text>
+        <text x="715" y="100" text-anchor="middle" font-size="13" fill="#1565c0">• OAuth2.0授权</text>
+        <text x="715" y="120" text-anchor="middle" font-size="13" fill="#1565c0">• OpenID绑定</text>
+        <text x="715" y="140" text-anchor="middle" font-size="13" fill="#1565c0">• UnionID关联</text>
+        <text x="715" y="160" text-anchor="middle" font-size="13" fill="#1565c0">• 用户信息同步</text>
+
+        <!-- 扩展登录 -->
+        <rect x="870" y="50" width="200" height="130" fill="#90caf9" stroke="#1565c0" stroke-dasharray="5,5" rx="8"/>
+        <text x="970" y="75" text-anchor="middle" font-size="15" font-weight="bold" fill="#0d47a1">扩展登录</text>
+        <text x="970" y="100" text-anchor="middle" font-size="13" fill="#1565c0">• 支付宝</text>
+        <text x="970" y="120" text-anchor="middle" font-size="13" fill="#1565c0">• QQ/微博</text>
+        <text x="970" y="140" text-anchor="middle" font-size="13" fill="#1565c0">• 企业SSO</text>
+        <text x="970" y="160" text-anchor="middle" font-size="13" fill="#1565c0">• 生物识别</text>
+    </g>
+
+    <!-- 核心能力层 -->
+    <g transform="translate(50, 420)">
+        <rect x="0" y="0" width="1100" height="150" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="10"/>
+        <text x="550" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#e65100">核心能力层</text>
+
+        <rect x="50" y="50" width="200" height="80" fill="#ffe0b2" stroke="#fb8c00" rx="8"/>
+        <text x="150" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">身份认证</text>
+        <text x="150" y="95" text-anchor="middle" font-size="12" fill="#f57c00">策略模式</text>
+        <text x="150" y="115" text-anchor="middle" font-size="12" fill="#f57c00">多因素认证</text>
+
+        <rect x="280" y="50" width="200" height="80" fill="#ffe0b2" stroke="#fb8c00" rx="8"/>
+        <text x="380" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">会话管理</text>
+        <text x="380" y="95" text-anchor="middle" font-size="12" fill="#f57c00">Token生成</text>
+        <text x="380" y="115" text-anchor="middle" font-size="12" fill="#f57c00">会话维持</text>
+
+        <rect x="510" y="50" width="200" height="80" fill="#ffe0b2" stroke="#fb8c00" rx="8"/>
+        <text x="610" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">安全防护</text>
+        <text x="610" y="95" text-anchor="middle" font-size="12" fill="#f57c00">防重放攻击</text>
+        <text x="610" y="115" text-anchor="middle" font-size="12" fill="#f57c00">风险控制</text>
+
+        <rect x="740" y="50" width="200" height="80" fill="#ffe0b2" stroke="#fb8c00" rx="8"/>
+        <text x="840" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">日志审计</text>
+        <text x="840" y="95" text-anchor="middle" font-size="12" fill="#f57c00">登录日志</text>
+        <text x="840" y="115" text-anchor="middle" font-size="12" fill="#f57c00">异常监控</text>
+    </g>
+
+    <!-- 数据支撑层 -->
+    <g transform="translate(50, 590)">
+        <rect x="0" y="0" width="1100" height="150" fill="#fce4ec" stroke="#d32f2f" stroke-width="2" rx="10"/>
+        <text x="550" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#b71c1c">数据支撑层</text>
+
+        <rect x="50" y="50" width="200" height="80" fill="#ffcdd2" stroke="#e53935" rx="8"/>
+        <text x="150" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#b71c1c">用户数据</text>
+        <text x="150" y="95" text-anchor="middle" font-size="12" fill="#c62828">用户信息</text>
+        <text x="150" y="115" text-anchor="middle" font-size="12" fill="#c62828">认证凭证</text>
+
+        <rect x="280" y="50" width="200" height="80" fill="#ffcdd2" stroke="#e53935" rx="8"/>
+        <text x="380" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#b71c1c">缓存服务</text>
+        <text x="380" y="95" text-anchor="middle" font-size="12" fill="#c62828">Token缓存</text>
+        <text x="380" y="115" text-anchor="middle" font-size="12" fill="#c62828">验证码缓存</text>
+
+        <rect x="510" y="50" width="200" height="80" fill="#ffcdd2" stroke="#e53935" rx="8"/>
+        <text x="610" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#b71c1c">消息服务</text>
+        <text x="610" y="95" text-anchor="middle" font-size="12" fill="#c62828">短信发送</text>
+        <text x="610" y="115" text-anchor="middle" font-size="12" fill="#c62828">邮件通知</text>
+
+        <rect x="740" y="50" width="200" height="80" fill="#ffcdd2" stroke="#e53935" rx="8"/>
+        <text x="840" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#b71c1c">第三方服务</text>
+        <text x="840" y="95" text-anchor="middle" font-size="12" fill="#c62828">微信开放平台</text>
+        <text x="840" y="115" text-anchor="middle" font-size="12" fill="#c62828">其他OAuth服务</text>
+    </g>
+</svg>
+</body>
+</html>

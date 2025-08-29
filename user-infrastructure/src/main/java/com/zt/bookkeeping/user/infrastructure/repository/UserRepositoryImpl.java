@@ -45,6 +45,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public UserAgg load(String userNo) {
+        // 1. 查询用户信息
+        LambdaQueryWrapper<UserPO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserPO::getUserNo, userNo);
+        UserPO userPO = userMapper.selectOne(queryWrapper);
+        if (userPO == null) {
+            return null;
+        }
+
+        // 2. 转化成聚合返回
+        return this.toEntity(userPO);
+    }
+
+    @Override
     public void insert(UserAgg userAgg) {
         UserPO userPO = this.toPO(userAgg);
         userMapper.insert(userPO);

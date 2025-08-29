@@ -8,5 +8,7 @@ public interface UserRepository {
 
     UserAgg getUserByMobile(String mobile);
 
+    UserAgg load(String userNo);
+
     void insert(UserAgg userAgg);
 }

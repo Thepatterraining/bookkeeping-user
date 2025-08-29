@@ -40,4 +40,11 @@ public class LoginController {
         return Result.success("登录成功", loginRes);
     }
 
+    @PostMapping("/wechat")
+    public Result<LoginRes> wechatLogin(@Valid @RequestBody LoginRequest request){
+        request.setLoginType(LoginTypeEnum.WECHAT_OPENID.getCode());
+        LoginRes loginRes = loginApplicationService.login(request);
+        return Result.success("登录成功", loginRes);
+    }
+
 }

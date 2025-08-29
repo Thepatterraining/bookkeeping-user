@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zt.bookkeeping.user.infrastructure.db.ThirdPartyUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zt.bookkeeping.user.infrastructure.db.entity.ThirdPartyUserPO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="platform_type" property="platformType" />
+        <result column="open_id" property="openId" />
+        <result column="union_id" property="unionId" />
+        <result column="nickname" property="nickname" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="gender" property="gender" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="language" property="language" />
+        <result column="extra_info" property="extraInfo" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, platform_type, open_id, union_id, nickname, avatar_url, gender, country, province, city, language, extra_info, create_time, update_time
+    </sql>
+
+    <!-- 根据平台类型和openId查询第三方用户 -->
+    <select id="selectByPlatformAndOpenId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM third_party_user
+        WHERE platform_type = #{platformType}
+        AND open_id = #{openId}
+        LIMIT 1
+    </select>
+
+    <!-- 根据平台类型和unionId查询第三方用户 -->
+    <select id="selectByPlatformAndUnionId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM third_party_user
+        WHERE platform_type = #{platformType}
+        AND union_id = #{unionId}
+        LIMIT 1
+    </select>
+
+    <!-- 根据用户ID和平台类型查询第三方用户 -->
+    <select id="selectByUserIdAndPlatform" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM third_party_user
+        WHERE user_id = #{userId}
+        AND platform_type = #{platformType}
+        LIMIT 1
+    </select>
+
+    <!-- 根据用户ID查询所有第三方用户 -->
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM third_party_user
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

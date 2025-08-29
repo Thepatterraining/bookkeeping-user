@@ -7,17 +7,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.zt.bookkeeping.user.common.base.AbstractPO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @TableName("user")
+@NoArgsConstructor
 public class UserPO extends AbstractPO {
-    @TableId(type = IdType.AUTO)
-    private Long id;
+
     private String userNo;
     private String username;
     private String password;

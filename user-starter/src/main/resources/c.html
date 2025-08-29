@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记账软件业务流程图</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: #ffffff;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>记账软件业务流程图</h1>
+    <svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景 -->
+        <rect width="1400" height="900" fill="#ffffff"/>
+
+        <!-- 左侧分层标识 -->
+        <g id="layers">
+            <!-- 用户层 -->
+            <rect x="20" y="50" width="120" height="200" rx="10" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+            <text x="80" y="150" text-anchor="middle" font-size="18" font-weight="500" fill="#3B82F6">用户层</text>
+
+            <!-- 业务层 -->
+            <rect x="20" y="270" width="120" height="320" rx="10" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+            <text x="80" y="430" text-anchor="middle" font-size="18" font-weight="500" fill="#10B981">业务层</text>
+
+            <!-- 数据层 -->
+            <rect x="20" y="610" width="120" height="200" rx="10" fill="#F59E0B" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+            <text x="80" y="710" text-anchor="middle" font-size="18" font-weight="500" fill="#F59E0B">数据层</text>
+        </g>
+
+        <!-- 用户层流程 -->
+        <g id="user-layer">
+            <!-- 开始节点 -->
+            <circle cx="200" cy="150" r="30" fill="#3B82F6"/>
+            <text x="200" y="155" text-anchor="middle" font-size="14" fill="white">开始</text>
+
+            <!-- 用户访问 -->
+            <rect x="280" y="120" width="120" height="60" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+            <text x="340" y="155" text-anchor="middle" font-size="14" fill="#1E40AF">用户访问</text>
+
+            <!-- 判断是否登录 -->
+            <path d="M 480 150 L 530 100 L 630 100 L 680 150 L 630 200 L 530 200 Z" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+            <text x="580" y="145" text-anchor="middle" font-size="13" fill="#1E40AF">是否已</text>
+            <text x="580" y="160" text-anchor="middle" font-size="13" fill="#1E40AF">登录？</text>
+
+            <!-- 注册/登录 -->
+            <rect x="760" y="70" width="120" height="60" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+            <text x="820" y="105" text-anchor="middle" font-size="14" fill="#92400E">注册/登录</text>
+
+            <!-- 进入主界面 -->
+            <rect x="960" y="120" width="120" height="60" rx="10" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+            <text x="1020" y="155" text-anchor="middle" font-size="14" fill="#065F46">进入主界面</text>
+        </g>
+
+        <!-- 业务层流程 -->
+        <g id="business-layer">
+            <!-- 主功能选择 -->
+            <rect x="280" y="300" width="140" height="80" rx="12" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+            <text x="350" y="335" text-anchor="middle" font-size="16" font-weight="500" fill="#065F46">功能选择</text>
+            <text x="350" y="355" text-anchor="middle" font-size="13" fill="#047857">主界面</text>
+
+            <!-- 创建账本 -->
+            <rect x="500" y="270" width="120" height="60" rx="10" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+            <text x="560" y="305" text-anchor="middle" font-size="14" fill="#0369A1">创建账本</text>
+
+            <!-- 记录收支 -->
+            <rect x="500" y="350" width="120" height="60" rx="10" fill="#F3E8FF" stroke="#9333EA" stroke-width="2"/>
+            <text x="560" y="385" text-anchor="middle" font-size="14" fill="#6B21A8">记录收支</text>
+
+            <!-- 查询记录 -->
+            <rect x="500" y="430" width="120" height="60" rx="10" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+            <text x="560" y="465" text-anchor="middle" font-size="14" fill="#B91C1C">查询记录</text>
+
+            <!-- 生成报表 -->
+            <rect x="500" y="510" width="120" height="60" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+            <text x="560" y="545" text-anchor="middle" font-size="14" fill="#92400E">生成报表</text>
+
+            <!-- 账本管理 -->
+            <rect x="720" y="270" width="140" height="60" rx="10" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+            <text x="790" y="305" text-anchor="middle" font-size="14" fill="#0369A1">账本管理</text>
+
+            <!-- 收支详情 -->
+            <rect x="720" y="350" width="140" height="60" rx="10" fill="#F3E8FF" stroke="#9333EA" stroke-width="2"/>
+            <text x="790" y="375" text-anchor="middle" font-size="13" fill="#6B21A8">填写收支详情</text>
+            <text x="790" y="390" text-anchor="middle" font-size="13" fill="#6B21A8">（金额/类别/备注）</text>
+
+            <!-- 筛选条件 -->
+            <rect x="720" y="430" width="140" height="60" rx="10" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+            <text x="790" y="455" text-anchor="middle" font-size="13" fill="#B91C1C">设置筛选条件</text>
+            <text x="790" y="470" text-anchor="middle" font-size="13" fill="#B91C1C">（时间/类别/金额）</text>
+
+            <!-- 报表类型 -->
+            <rect x="720" y="510" width="140" height="60" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+            <text x="790" y="535" text-anchor="middle" font-size="13" fill="#92400E">选择报表类型</text>
+            <text x="790" y="550" text-anchor="middle" font-size="13" fill="#92400E">（收支/趋势/分类）</text>
+
+            <!-- 数据处理 -->
+            <rect x="960" y="380" width="140" height="80" rx="12" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+            <text x="1030" y="415" text-anchor="middle" font-size="16" font-weight="500" fill="#1E40AF">数据处理</text>
+            <text x="1030" y="435" text-anchor="middle" font-size="13" fill="#2563EB">验证与计算</text>
+        </g>
+
+        <!-- 数据层流程 -->
+        <g id="data-layer">
+            <!-- 数据库 -->
+            <rect x="280" y="650" width="140" height="80" rx="12" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+            <text x="350" y="685" text-anchor="middle" font-size="16" font-weight="500" fill="#92400E">数据库</text>
+            <text x="350" y="705" text-anchor="middle" font-size="13" fill="#B45309">MySQL/PostgreSQL</text>
+
+            <!-- 用户表 -->
+            <rect x="500" y="620" width="100" height="50" rx="8" fill="#FFE4B5" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="550" y="650" text-anchor="middle" font-size="13" fill="#92400E">用户表</text>
+
+            <!-- 账本表 -->
+            <rect x="620" y="620" width="100" height="50" rx="8" fill="#FFE4B5" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="670" y="650" text-anchor="middle" font-size="13" fill="#92400E">账本表</text>
+
+            <!-- 收支记录表 -->
+            <rect x="740" y="620" width="100" height="50" rx="8" fill="#FFE4B5" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="790" y="650" text-anchor="middle" font-size="13" fill="#92400E">收支记录表</text>
+
+            <!-- 分类表 -->
+            <rect x="860" y="620" width="100" height="50" rx="8" fill="#FFE4B5" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="910" y="650" text-anchor="middle" font-size="13" fill="#92400E">分类表</text>
+
+            <!-- 缓存 -->
+            <rect x="500" y="690" width="120" height="60" rx="10" fill="#FFEDD5" stroke="#F97316" stroke-width="2"/>
+            <text x="560" y="725" text-anchor="middle" font-size="14" fill="#C2410C">Redis缓存</text>
+
+            <!-- 报表数据 -->
+            <rect x="650" y="690" width="120" height="60" rx="10" fill="#FED7AA" stroke="#FB923C" stroke-width="2"/>
+            <text x="710" y="725" text-anchor="middle" font-size="14" fill="#EA580C">报表数据</text>
+        </g>
+
+        <!-- 连接线 -->
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+            </marker>
+        </defs>
+
+        <!-- 流程连接线 -->
+        <g id="connections" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+            <!-- 用户层连接 -->
+            <path d="M 230 150 L 280 150"/>
+            <path d="M 400 150 L 480 150"/>
+            <path d="M 680 150 L 760 150 L 760 100"/>
+            <path d="M 880 100 L 960 100 L 960 150"/>
+            <path d="M 580 200 L 580 240 L 1020 240 L 1020 180"/>
+
+            <!-- 业务层连接 -->
+            <path d="M 350 380 L 350 400 L 450 400 L 450 300 L 500 300"/>
+            <path d="M 350 380 L 350 400 L 450 400 L 450 380 L 500 380"/>
+            <path d="M 350 380 L 350 400 L 450 400 L 450 460 L 500 460"/>
+            <path d="M 350 380 L 350 400 L 450 400 L 450 540 L 500 540"/>
+
+            <path d="M 620 300 L 720 300"/>
+            <path d="M 620 380 L 720 380"/>
+            <path d="M 620 460 L 720 460"/>
+            <path d="M 620 540 L 720 540"/>
+
+            <path d="M 860 300 L 920 300 L 920 420 L 960 420"/>
+            <path d="M 860 380 L 920 380 L 920 420 L 960 420"/>
+            <path d="M 860 460 L 920 460 L 920 420 L 960 420"/>
+            <path d="M 860 540 L 920 540 L 920 420 L 960 420"/>
+
+            <!-- 数据层连接 -->
+            <path d="M 1030 460 L 1030 600 L 350 600 L 350 650"/>
+            <path d="M 420 690 L 500 690"/>
+            <path d="M 420 710 L 480 710 L 480 720 L 500 720"/>
+        </g>
+
+        <!-- 标注文字 -->
+        <g font-size="12" fill="#666">
+            <text x="250" y="140">访问系统</text>
+            <text x="440" y="140">判断登录</text>
+            <text x="700" y="120">否</text>
+            <text x="580" y="230">是</text>
+            <text x="460" y="290">创建</text>
+            <text x="460" y="370">记账</text>
+            <text x="460" y="450">查询</text>
+            <text x="460" y="530">报表</text>
+        </g>
+    </svg>
+</div>
+</body>
+</html>

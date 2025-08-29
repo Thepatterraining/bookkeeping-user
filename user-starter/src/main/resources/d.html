@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多方式登录架构业务流程图</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background-color: #ffffff;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      color: #1a1a1a;
+      font-size: 26px;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>多方式登录架构业务流程图</h1>
+  <svg viewBox="0 0 1600 1100" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="1600" height="1100" fill="#ffffff"/>
+
+    <!-- 左侧分层标识 -->
+    <g id="layers">
+      <!-- 客户端层 -->
+      <rect x="20" y="50" width="120" height="180" rx="10" fill="#3B82F6" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+      <text x="80" y="140" text-anchor="middle" font-size="18" font-weight="500" fill="#3B82F6">客户端层</text>
+
+      <!-- 网关层 -->
+      <rect x="20" y="250" width="120" height="120" rx="10" fill="#8B5CF6" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+      <text x="80" y="310" text-anchor="middle" font-size="18" font-weight="500" fill="#8B5CF6">网关层</text>
+
+      <!-- 认证层 -->
+      <rect x="20" y="390" width="120" height="300" rx="10" fill="#10B981" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+      <text x="80" y="540" text-anchor="middle" font-size="18" font-weight="500" fill="#10B981">认证层</text>
+
+      <!-- 服务层 -->
+      <rect x="20" y="710" width="120" height="180" rx="10" fill="#F59E0B" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+      <text x="80" y="800" text-anchor="middle" font-size="18" font-weight="500" fill="#F59E0B">服务层</text>
+
+      <!-- 数据层 -->
+      <rect x="20" y="910" width="120" height="150" rx="10" fill="#EF4444" opacity="0.1" stroke="#EF4444" stroke-width="2"/>
+      <text x="80" y="985" text-anchor="middle" font-size="18" font-weight="500" fill="#EF4444">数据层</text>
+    </g>
+
+    <!-- 客户端层 -->
+    <g id="client-layer">
+      <!-- 用户访问 -->
+      <circle cx="200" cy="140" r="30" fill="#3B82F6"/>
+      <text x="200" y="145" text-anchor="middle" font-size="14" fill="white">开始</text>
+
+      <!-- 选择登录方式 -->
+      <rect x="280" y="100" width="140" height="80" rx="12" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+      <text x="350" y="130" text-anchor="middle" font-size="15" font-weight="500" fill="#1E40AF">选择登录方式</text>
+      <text x="350" y="150" text-anchor="middle" font-size="13" fill="#2563EB">用户界面</text>
+      <text x="350" y="165" text-anchor="middle" font-size="12" fill="#3B82F6">支持多种方式</text>
+
+      <!-- 登录方式选项 -->
+      <rect x="500" y="60" width="130" height="50" rx="10" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+      <text x="565" y="90" text-anchor="middle" font-size="13" fill="#1E40AF">用户名密码</text>
+
+      <rect x="650" y="60" width="130" height="50" rx="10" fill="#E0E7FF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="715" y="90" text-anchor="middle" font-size="13" fill="#4F46E5">手机验证码</text>
+
+      <rect x="800" y="60" width="130" height="50" rx="10" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+      <text x="865" y="90" text-anchor="middle" font-size="13" fill="#065F46">微信OpenID</text>
+
+      <rect x="950" y="60" width="130" height="50" rx="10" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+      <text x="1015" y="90" text-anchor="middle" font-size="13" fill="#B91C1C">扩展登录...</text>
+
+      <!-- 收集凭证 -->
+      <rect x="1160" y="100" width="140" height="80" rx="12" fill="#F3F4F6" stroke="#6B7280" stroke-width="2"/>
+      <text x="1230" y="130" text-anchor="middle" font-size="15" font-weight="500" fill="#374151">收集登录凭证</text>
+      <text x="1230" y="150" text-anchor="middle" font-size="13" fill="#4B5563">表单验证</text>
+      <text x="1230" y="165" text-anchor="middle" font-size="12" fill="#6B7280">加密传输</text>
+    </g>
+
+    <!-- 网关层 -->
+    <g id="gateway-layer">
+      <!-- API网关 -->
+      <rect x="280" y="270" width="140" height="80" rx="12" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2"/>
+      <text x="350" y="300" text-anchor="middle" font-size="15" font-weight="500" fill="#6B21A8">API网关</text>
+      <text x="350" y="320" text-anchor="middle" font-size="13" fill="#7C3AED">统一入口</text>
+      <text x="350" y="335" text-anchor="middle" font-size="12" fill="#8B5CF6">路由分发</text>
+
+      <!-- 安全校验 -->
+      <rect x="500" y="285" width="120" height="50" rx="10" fill="#F3E8FF" stroke="#9333EA" stroke-width="1.5"/>
+      <text x="560" y="315" text-anchor="middle" font-size="13" fill="#6B21A8">安全校验</text>
+
+      <!-- 限流熔断 -->
+      <rect x="650" y="285" width="120" height="50" rx="10" fill="#FAE8FF" stroke="#C026D3" stroke-width="1.5"/>
+      <text x="710" y="315" text-anchor="middle" font-size="13" fill="#86198F">限流熔断</text>
+    </g>
+
+    <!-- 认证层 -->
+    <g id="auth-layer">
+      <!-- 认证中心 -->
+      <rect x="280" y="420" width="160" height="100" rx="12" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+      <text x="360" y="455" text-anchor="middle" font-size="16" font-weight="500" fill="#065F46">统一认证中心</text>
+      <text x="360" y="475" text-anchor="middle" font-size="13" fill="#047857">OAuth2.0</text>
+      <text x="360" y="495" text-anchor="middle" font-size="12" fill="#10B981">策略模式</text>
+
+      <!-- 认证策略工厂 -->
+      <rect x="520" y="440" width="140" height="60" rx="10" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+      <text x="590" y="465" text-anchor="middle" font-size="14" font-weight="500" fill="#065F46">认证策略工厂</text>
+      <text x="590" y="483" text-anchor="middle" font-size="12" fill="#047857">动态选择</text>
+
+      <!-- 具体认证策略 -->
+      <g id="auth-strategies">
+        <!-- 账号密码策略 -->
+        <rect x="720" y="410" width="140" height="55" rx="10" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+        <text x="790" y="435" text-anchor="middle" font-size="13" font-weight="500" fill="#1E40AF">账号密码策略</text>
+        <text x="790" y="452" text-anchor="middle" font-size="11" fill="#2563EB">BCrypt加密验证</text>
+
+        <!-- 手机验证码策略 -->
+        <rect x="880" y="410" width="140" height="55" rx="10" fill="#E0E7FF" stroke="#6366F1" stroke-width="1.5"/>
+        <text x="950" y="435" text-anchor="middle" font-size="13" font-weight="500" fill="#4F46E5">手机验证码策略</text>
+        <text x="950" y="452" text-anchor="middle" font-size="11" fill="#6366F1">SMS验证</text>
+
+        <!-- 微信认证策略 -->
+        <rect x="1040" y="410" width="140" height="55" rx="10" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+        <text x="1110" y="435" text-anchor="middle" font-size="13" font-weight="500" fill="#065F46">微信认证策略</text>
+        <text x="1110" y="452" text-anchor="middle" font-size="11" fill="#10B981">OpenID验证</text>
+
+        <!-- 扩展策略 -->
+        <rect x="1200" y="410" width="140" height="55" rx="10" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+        <text x="1270" y="435" text-anchor="middle" font-size="13" font-weight="500" fill="#B91C1C">扩展认证策略</text>
+        <text x="1270" y="452" text-anchor="middle" font-size="11" fill="#EF4444">接口预留</text>
+      </g>
+
+      <!-- 认证结果处理 -->
+      <rect x="720" y="500" width="200" height="60" rx="10" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+      <text x="820" y="525" text-anchor="middle" font-size="14" font-weight="500" fill="#0369A1">认证结果处理</text>
+      <text x="820" y="543" text-anchor="middle" font-size="12" fill="#0284C7">成功/失败/需要绑定</text>
+
+      <!-- Token生成 -->
+      <rect x="1000" y="500" width="160" height="60" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+      <text x="1080" y="525" text-anchor="middle" font-size="14" font-weight="500" fill="#92400E">Token生成</text>
+      <text x="1080" y="543" text-anchor="middle" font-size="12" fill="#B45309">JWT/RefreshToken</text>
+
+      <!-- 权限分配 -->
+      <rect x="280" y="580" width="140" height="60" rx="10" fill="#F3E8FF" stroke="#9333EA" stroke-width="2"/>
+      <text x="350" y="605" text-anchor="middle" font-size="14" font-weight="500" fill="#6B21A8">权限分配</text>
+      <text x="350" y="623" text-anchor="middle" font-size="12" fill="#7C3AED">RBAC模型</text>
+    </g>
+
+    <!-- 服务层 -->
+    <g id="service-layer">
+      <!-- 用户服务 -->
+      <rect x="280" y="740" width="140" height="80" rx="12" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+      <text x="350" y="770" text-anchor="middle" font-size="15" font-weight="500" fill="#92400E">用户服务</text>
+      <text x="350" y="790" text-anchor="middle" font-size="13" fill="#B45309">用户管理</text>
+      <text x="350" y="805" text-anchor="middle" font-size="12" fill="#F59E0B">信息维护</text>
+
+      <!-- 第三方服务 -->
+      <rect x="500" y="740" width="140" height="80" rx="12" fill="#FFE4B5" stroke="#FB923C" stroke-width="2"/>
+      <text x="570" y="770" text-anchor="middle" font-size="15" font-weight="500" fill="#C2410C">第三方服务</text>
+      <text x="570" y="790" text-anchor="middle" font-size="13" fill="#EA580C">微信API</text>
+      <text x="570" y="805" text-anchor="middle" font-size="12" fill="#F97316">SMS服务</text>
+
+      <!-- 日志服务 -->
+      <rect x="720" y="740" width="140" height="80" rx="12" fill="#FED7AA" stroke="#FB923C" stroke-width="2"/>
+      <text x="790" y="770" text-anchor="middle" font-size="15" font-weight="500" fill="#C2410C">日志服务</text>
+      <text x="790" y="790" text-anchor="middle" font-size="13" fill="#EA580C">登录日志</text>
+      <text x="790" y="805" text-anchor="middle" font-size="12" fill="#F97316">审计追踪</text>
+
+      <!-- 缓存服务 -->
+      <rect x="940" y="740" width="140" height="80" rx="12" fill="#FFEDD5" stroke="#F97316" stroke-width="2"/>
+      <text x="1010" y="770" text-anchor="middle" font-size="15" font-weight="500" fill="#C2410C">缓存服务</text>
+      <text x="1010" y="790" text-anchor="middle" font-size="13" fill="#EA580C">Redis</text>
+      <text x="1010" y="805" text-anchor="middle" font-size="12" fill="#F97316">Token缓存</text>
+    </g>
+
+    <!-- 数据层 -->
+    <g id="data-layer">
+      <!-- 用户数据库 -->
+      <rect x="280" y="940" width="140" height="80" rx="12" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+      <text x="350" y="970" text-anchor="middle" font-size="15" font-weight="500" fill="#B91C1C">用户数据库</text>
+      <text x="350" y="990" text-anchor="middle" font-size="13" fill="#DC2626">MySQL</text>
+      <text x="350" y="1005" text-anchor="middle" font-size="12" fill="#EF4444">主从架构</text>
+
+      <!-- 数据表 -->
+      <g id="tables" font-size="11">
+        <rect x="500" y="930" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="550" y="955" text-anchor="middle" fill="#B91C1C">用户基础表</text>
+
+        <rect x="620" y="930" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="670" y="955" text-anchor="middle" fill="#B91C1C">认证凭证表</text>
+
+        <rect x="740" y="930" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="790" y="955" text-anchor="middle" fill="#B91C1C">第三方绑定表</text>
+
+        <rect x="860" y="930" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="910" y="955" text-anchor="middle" fill="#B91C1C">登录日志表</text>
+
+        <rect x="500" y="990" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="550" y="1015" text-anchor="middle" fill="#B91C1C">权限角色表</text>
+
+        <rect x="620" y="990" width="100" height="40" rx="8" fill="#FECACA" stroke="#EF4444" stroke-width="1"/>
+        <text x="670" y="1015" text-anchor="middle" fill="#B91C1C">Token记录表</text>
+      </g>
+    </g>
+
+    <!-- 连接线 -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+      </marker>
+    </defs>
+
+    <!-- 流程连接 -->
+    <g id="connections" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+      <!-- 客户端流程 -->
+      <path d="M 230 140 L 280 140"/>
+      <path d="M 420 140 L 500 140 L 500 85 L 500 85"/>
+      <path d="M 420 140 L 650 140 L 650 85 L 650 85"/>
+      <path d="M 420 140 L 800 140 L 800 85 L 800 85"/>
+      <path d="M 420 140 L 950 140 L 950 85 L 950 85"/>
+      <path d="M 630 85 L 1160 85 L 1160 140"/>
+      <path d="M 780 85 L 1160 85"/>
+      <path d="M 930 85 L 1160 85"/>
+      <path d="M 1080 85 L 1160 85"/>
+
+      <!-- 到网关 -->
+      <path d="M 1230 180 L 1230 250 L 350 250 L 350 270"/>
+
+      <!-- 网关到认证 -->
+      <path d="M 350 350 L 350 420"/>
+      <path d="M 420 310 L 500 310"/>
+      <path d="M 620 310 L 650 310"/>
+
+      <!-- 认证流程 -->
+      <path d="M 440 470 L 520 470"/>
+      <path d="M 660 470 L 720 470 L 720 437"/>
+      <path d="M 660 470 L 880 470 L 880 437"/>
+      <path d="M 660 470 L 1040 470 L 1040 437"/>
+      <path d="M 660 470 L 1200 470 L 1200 437"/>
+
+      <path d="M 860 437 L 860 480 L 820 480 L 820 500"/>
+      <path d="M 950 465 L 950 480 L 820 480"/>
+      <path d="M 1110 465 L 1110 480 L 820 480"/>
+
+      <path d="M 920 530 L 1000 530"/>
+      <path d="M 350 520 L 350 580"/>
+
+      <!-- 到服务层 -->
+      <path d="M 350 640 L 350 740"/>
+      <path d="M 1080 560 L 1080 700 L 1010 700 L 1010 740"/>
+      <path d="M 570 700 L 570 740"/>
+      <path d="M 790 700 L 790 740"/>
+
+      <!-- 到数据层 -->
+      <path d="M 350 820 L 350 940"/>
+    </g>
+
+    <!-- 标注 -->
+    <g font-size="11" fill="#6B7280">
+      <text x="1380" y="140" text-anchor="middle" font-weight="500">可扩展登录接口</text>
+      <text x="1380" y="155" text-anchor="middle">IAuthStrategy</text>
+
+      <text x="1380" y="470" text-anchor="middle" font-weight="500">策略模式优势</text>
+      <text x="1380" y="485" text-anchor="middle">1. 易于扩展新登录方式</text>
+      <text x="1380" y="500" text-anchor="middle">2. 各策略独立维护</text>
+      <text x="1380" y="515" text-anchor="middle">3. 统一认证流程</text>
+
+      <text x="1380" y="780" text-anchor="middle" font-weight="500">安全措施</text>
+      <text x="1380" y="795" text-anchor="middle">• HTTPS传输</text>
+      <text x="1380" y="810" text-anchor="middle">• 密码加密存储</text>
+      <text x="1380" y="825" text-anchor="middle">• Token过期机制</text>
+      <text x="1380" y="840" text-anchor="middle">• 防重放攻击</text>
+    </g>
+  </svg>
+</div>
+</body>
+</html>
