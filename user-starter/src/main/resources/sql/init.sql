@@ -82,6 +82,7 @@ create table transaction_statement
     category_no    char(20) default ''                not null comment '分类编号',
     category_name    char(20) default ''                not null comment '分类名称',
     category_type    char(20) default ''                not null comment '分类类型 1 系统 2 用户',
+    category_icon varchar(255)   default ''                not null comment '分类图标',
     create_user   char(20)      default ''                not null comment '创建人',
     update_user   char(20)      default ''                not null comment '更新人',
     is_deleted    bit      default b'0'                not null comment '是否删除',

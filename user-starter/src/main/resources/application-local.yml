@@ -90,3 +90,26 @@ management:
 wechat:
   appid: wx61888babefa06666
   secret: d8d94ef03e8ff776df5e8ce46f177a28
+
+dubbo:
+  registry:
+    address: nacos://${spring.cloud.nacos.discovery.server-addr:localhost}?username=nacos&password=nacos
+    parameters:
+      namespace: ${spring.cloud.nacos.discovery.namespace:}
+      group: ${spring.cloud.nacos.discovery.group:DEFAULT_GROUP}
+    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
+    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
+    register-mode: instance
+  protocol:
+    name: tri
+    port: 50052
+  application:
+    name: ${spring.application.name}
+    logger: slf4j
+  # 添加QoS配置
+  qos:
+    enable: true
+    port: 22223  # 修改默认端口
+    accept:
+      foreign:
+        ip: false  # 只允许本地连接

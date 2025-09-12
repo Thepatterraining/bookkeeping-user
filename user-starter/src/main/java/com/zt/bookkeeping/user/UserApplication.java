@@ -3,6 +3,7 @@ package com.zt.bookkeeping.user;
 import com.zt.bookkeeping.user.infrastructure.config.SnowFlakeGeneratorConfig;
 import com.zt.bookkeeping.user.infrastructure.config.TaskThreadPoolThirdCooperateConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableConfigurationProperties({TaskThreadPoolThirdCooperateConfig.class, SnowFlakeGeneratorConfig.class})
 @EnableAsync
 @EnableDiscoveryClient  // 添加这个注解启用服务发现
+@EnableDubbo
 public class UserApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserApplication.class);

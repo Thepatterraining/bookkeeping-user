@@ -8,18 +8,12 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>user-application</artifactId>
+	<artifactId>user-api</artifactId>
 	<packaging>jar</packaging>
-	<name>user-application</name>
-	<description>用户服务应用层</description>
+	<name>user-api</name>
+	<description>用户服务rpc层</description>
 
 	<dependencies>
-		<!-- 依赖领域层 -->
-		<dependency>
-			<groupId>com.zt.bookkeeping.user</groupId>
-			<artifactId>user-domain</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -33,12 +27,6 @@
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.zt.bookkeeping.user</groupId>
-            <artifactId>user-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+	</dependencies>
 
 </project>
