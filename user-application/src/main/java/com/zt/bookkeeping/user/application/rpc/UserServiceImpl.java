@@ -47,9 +47,9 @@ public class UserServiceImpl implements IUserService {
     private UserDTO buildUserDTO(UserPO userPO) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUserNo(userPO.getUserNo());
-        userDTO.setUserAvatar(userDTO.getUserAvatar());
-        userDTO.setUserEmail(userDTO.getUserEmail());
-        userDTO.setUserName(userDTO.getUserName());
+        userDTO.setUserAvatar("");
+        userDTO.setUserEmail(userPO.getEmail());
+        userDTO.setUserName(userPO.getUsername());
         userDTO.setCreateTime(LocalDateTimeUtil.format(userPO.getCreateTime()));
         return userDTO;
     }

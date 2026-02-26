@@ -3,6 +3,7 @@ package com.zt.bookkeeping.user.api.response;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,6 +15,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class BatchQueryUserInfoResponse {
+public class BatchQueryUserInfoResponse implements Serializable {
     List<UserDTO> userDTOList;
 }
