@@ -55,6 +55,20 @@ spring:
         port: ${server.port:8080}
         metadata:
           version: ${project.version:0.0.1-SNAPSHOT}
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: bookkeeping-user-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      missing-topics-fatal: false
 
 #线程池配置参数
 task:
@@ -90,6 +104,12 @@ management:
 wechat:
   appid: wx61888babefa06666
   secret: d8d94ef03e8ff776df5e8ce46f177a28
+
+bookkeeping:
+  kafka:
+    topic:
+      user-login: bookkeeping.user.login
+      user-register: bookkeeping.user.register
 
 dubbo:
   registry:

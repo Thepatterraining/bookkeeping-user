@@ -1,8 +1,8 @@
 package com.zt.bookkeeping.user;
 
+import com.zt.bookkeeping.user.infrastructure.config.KafkaTopicConfig;
 import com.zt.bookkeeping.user.infrastructure.config.SnowFlakeGeneratorConfig;
 import com.zt.bookkeeping.user.infrastructure.config.TaskThreadPoolThirdCooperateConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -11,14 +11,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @MapperScan("com.zt.bookkeeping.user.infrastructure.db")  // 添加这个注解
-@EnableConfigurationProperties({TaskThreadPoolThirdCooperateConfig.class, SnowFlakeGeneratorConfig.class})
+@EnableConfigurationProperties({TaskThreadPoolThirdCooperateConfig.class, SnowFlakeGeneratorConfig.class, KafkaTopicConfig.class})
 @EnableAsync
 @EnableDiscoveryClient  // 添加这个注解启用服务发现
 @EnableDubbo
+@EnableKafka
 public class UserApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserApplication.class);
